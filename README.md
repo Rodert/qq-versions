@@ -1,84 +1,59 @@
-# qq-versions
+# QQ Versions
 
-自动扫描 QQ 官网下载配置，并把新的 QQ 安装包上传到 GitHub Releases。
+QQ Versions 是一个 QQ 官方安装包历史版本镜像。仓库会把可用的 Windows、macOS、Linux 安装包归档到 GitHub Releases，方便查找、下载和校验不同平台的历史版本。
 
-## 工作方式
+**语言**：中文 | [English](README.en.md) | [Français](README.fr.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [Español](README.es.md)
 
-仓库内的 GitHub Action 会在每次提交推送后运行，也会每天定时运行一次：
+## 下载历史版本
 
-1. 读取 QQ 官网使用的桌面端下载配置。
-2. 同时检查官方 CDN 地址和官网代理地址，并选择版本/更新日期更新的安装包。
-3. 根据安装包版本生成 Release tag。
-4. 如果这个 tag 已经存在，则跳过下载和发布。
-5. 如果发现新版本，则下载安装包、生成 `SHA256SUMS.txt`，并创建 GitHub Release。
+推荐入口：
 
-默认同步所有已支持的 Windows、macOS、Linux 安装包。可以在 GitHub Actions 页面手动运行 workflow，并通过 `targets` 参数指定其中一部分安装包。
+- GitHub Pages 展示页：<https://rodert.github.io/qq-versions/>
+- GitHub Releases：<https://github.com/Rodert/qq-versions/releases>
 
-## 自动运行规则
+在展示页或 Releases 页面中选择需要的版本，然后按操作系统下载对应安装包：
 
-Workflow: `.github/workflows/sync-qq-release.yml`
+- Windows：`.exe`
+- macOS：`.dmg`
+- Linux：`.deb`、`.rpm`、`.AppImage`
 
-每次 push 后都会运行：
+每个 Release 通常会附带 `SHA256SUMS.txt`，可用于校验下载文件是否完整。
 
-```yaml
-push:
-```
+## 怎么用
 
-默认 cron 为每天北京时间 02:20：
+1. 打开 <https://rodert.github.io/qq-versions/>。
+2. 按 Windows、macOS 或 Linux 筛选安装包。
+3. 点击需要的文件下载。
+4. 下载完成后直接运行安装包，或按你的系统包管理方式安装。
 
-```yaml
-schedule:
-  - cron: "20 18 * * *"
-```
-
-GitHub Actions 的 cron 使用 UTC 时间，所以 `18:20 UTC` 对应北京时间第二天 `02:20`。
-
-## 支持的 targets
-
-多个 target 用英文逗号分隔，例如：
-
-```text
-windows-x64,windows-x86,windows-arm64,macos
-```
-
-当前支持：
-
-- `windows-x64`
-- `windows-x86`
-- `windows-arm64`
-- `windows-classic`
-- `macos`
-- `linux-amd64-deb`
-- `linux-amd64-rpm`
-- `linux-amd64-appimage`
-- `linux-arm64-deb`
-- `linux-arm64-rpm`
-- `linux-arm64-appimage`
-- `linux-loongarch64-deb`
-- `linux-mips64el-deb`
-
-## 本地测试
-
-只解析官网配置，不下载大文件：
+Linux 示例：
 
 ```bash
-QQ_DRY_RUN=1 python3 scripts/sync_qq_release.py
+sudo dpkg -i QQ*.deb
 ```
-
-指定多个安装包：
 
 ```bash
-QQ_DRY_RUN=1 QQ_RELEASE_TARGETS=windows-x64,macos python3 scripts/sync_qq_release.py
+sudo rpm -i QQ*.rpm
 ```
-
-默认解析全部支持的安装包：
 
 ```bash
-QQ_DRY_RUN=1 python3 scripts/sync_qq_release.py
+chmod +x QQ*.AppImage
+./QQ*.AppImage
 ```
 
-实际下载到 `dist/qq-release`：
+校验文件示例：
 
 ```bash
-python3 scripts/sync_qq_release.py --output-dir dist/qq-release
+sha256sum -c SHA256SUMS.txt
 ```
+
+## 仓库作用
+
+这个仓库只做一件事：整理并发布 QQ 官方安装包的历史版本索引。它适合在以下场景使用：
+
+- 需要下载旧版 QQ 安装包。
+- 需要为不同操作系统保存同一时期的安装包。
+- 需要通过 SHA256 校验安装包完整性。
+- 需要一个更易浏览的 QQ Releases 下载页面。
+
+安装包版权归腾讯所有。本仓库仅做历史版本索引与下载归档。

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>QQ Versions</title>
+    <meta
+      name="description"
+      content="QQ 官方安装包自动镜像，展示 GitHub Releases 中的 Windows、macOS、Linux 安装包。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__media" aria-hidden="true">
+          <div class="product-mark">
+            <span>QQ</span>
+          </div>
+          <div class="release-strip release-strip--one"></div>
+          <div class="release-strip release-strip--two"></div>
+          <div class="release-strip release-strip--three"></div>
+        </div>
+
+        <div class="hero__content">
+          <p class="eyebrow">Official installer mirror</p>
+          <h1 id="hero-title">QQ Versions</h1>
+          <p class="hero__lead">
+            自动同步 QQ 官网安装包，按 Release 归档 Windows、macOS、Linux 全平台下载资产。
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#releases">查看 Releases</a>
+            <a class="button button--ghost" href="https://github.com/Rodert/qq-versions/releases">GitHub 下载</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary" aria-label="同步状态">
+        <div>
+          <span class="summary__value" id="release-count">--</span>
+          <span class="summary__label">Releases</span>
+        </div>
+        <div>
+          <span class="summary__value" id="asset-count">--</span>
+          <span class="summary__label">Assets</span>
+        </div>
+        <div>
+          <span class="summary__value" id="latest-date">--</span>
+          <span class="summary__label">Latest update</span>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Release 过滤">
+        <div>
+          <p class="eyebrow">Release browser</p>
+          <h2 id="releases">下载归档</h2>
+        </div>
+        <div class="filters" role="group" aria-label="按操作系统筛选">
+          <button class="filter is-active" data-filter="all" type="button">全部</button>
+          <button class="filter" data-filter="windows" type="button">Windows</button>
+          <button class="filter" data-filter="macos" type="button">macOS</button>
+          <button class="filter" data-filter="linux" type="button">Linux</button>
+        </div>
+      </section>
+
+      <section class="release-grid" id="release-grid" aria-live="polite">
+        <article class="release-card release-card--loading">
+          <div class="skeleton skeleton--title"></div>
+          <div class="skeleton skeleton--line"></div>
+          <div class="skeleton skeleton--line"></div>
+          <div class="skeleton skeleton--assets"></div>
+        </article>
+      </section>
+    </main>
+
+    <template id="release-template">
+      <article class="release-card">
+        <div class="release-card__top">
+          <div>
+            <p class="release-card__date"></p>
+            <h3></h3>
+          </div>
+          <a class="release-card__tag" target="_blank" rel="noreferrer"></a>
+        </div>
+        <p class="release-card__body"></p>
+        <div class="asset-list"></div>
+      </article>
+    </template>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
