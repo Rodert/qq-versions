@@ -4,7 +4,7 @@
 
 ## 工作方式
 
-仓库内的 GitHub Action 会每天运行一次：
+仓库内的 GitHub Action 会在每次提交推送后运行，也会每天定时运行一次：
 
 1. 读取 QQ 官网使用的桌面端下载配置。
 2. 同时检查官方 CDN 地址和官网代理地址，并选择版本/更新日期更新的安装包。
@@ -12,11 +12,17 @@
 4. 如果这个 tag 已经存在，则跳过下载和发布。
 5. 如果发现新版本，则下载安装包、生成 `SHA256SUMS.txt`，并创建 GitHub Release。
 
-默认只同步 Windows x64 安装包，避免每天上传过多大文件。可以在 GitHub Actions 页面手动运行 workflow，并通过 `targets` 参数指定更多安装包。
+默认同步所有已支持的 Windows、macOS、Linux 安装包。可以在 GitHub Actions 页面手动运行 workflow，并通过 `targets` 参数指定其中一部分安装包。
 
-## 默认定时任务
+## 自动运行规则
 
 Workflow: `.github/workflows/sync-qq-release.yml`
+
+每次 push 后都会运行：
+
+```yaml
+push:
+```
 
 默认 cron 为每天北京时间 02:20：
 
@@ -65,8 +71,14 @@ QQ_DRY_RUN=1 python3 scripts/sync_qq_release.py
 QQ_DRY_RUN=1 QQ_RELEASE_TARGETS=windows-x64,macos python3 scripts/sync_qq_release.py
 ```
 
+默认解析全部支持的安装包：
+
+```bash
+QQ_DRY_RUN=1 python3 scripts/sync_qq_release.py
+```
+
 实际下载到 `dist/qq-release`：
 
 ```bash
-python3 scripts/sync_qq_release.py --targets windows-x64 --output-dir dist/qq-release
+python3 scripts/sync_qq_release.py --output-dir dist/qq-release
 ```

@@ -1,6 +1,7 @@
 name: Sync QQ installer releases
 
 on:
+  push:
   schedule:
     # 02:20 Asia/Shanghai every day.
     - cron: "20 18 * * *"
@@ -9,7 +10,7 @@ on:
       targets:
         description: "Comma-separated package targets"
         required: false
-        default: "windows-x64"
+        default: "windows-x64,windows-x86,windows-arm64,windows-classic,macos,linux-amd64-deb,linux-amd64-rpm,linux-amd64-appimage,linux-arm64-deb,linux-arm64-rpm,linux-arm64-appimage,linux-loongarch64-deb,linux-mips64el-deb"
       force:
         description: "Create/upload even if the release tag already exists"
         required: false
@@ -27,7 +28,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     env:
-      QQ_RELEASE_TARGETS: ${{ github.event.inputs.targets || 'windows-x64' }}
+      QQ_RELEASE_TARGETS: ${{ github.event.inputs.targets || 'windows-x64,windows-x86,windows-arm64,windows-classic,macos,linux-amd64-deb,linux-amd64-rpm,linux-amd64-appimage,linux-arm64-deb,linux-arm64-rpm,linux-arm64-appimage,linux-loongarch64-deb,linux-mips64el-deb' }}
       QQ_FORCE_RELEASE: ${{ github.event.inputs.force || 'false' }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

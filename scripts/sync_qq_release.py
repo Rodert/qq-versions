@@ -29,7 +29,22 @@ PC_CONFIG_URLS = [
     "https://im.qq.com/proxy/domain/cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/pcConfig.json",
     "https://cdn-go.cn/qq-web/im.qq.com_new/latest/rainbow/pcConfig.json",
 ]
-DEFAULT_TARGETS = "windows-x64"
+SUPPORTED_TARGETS = [
+    "windows-x64",
+    "windows-x86",
+    "windows-arm64",
+    "windows-classic",
+    "macos",
+    "linux-amd64-deb",
+    "linux-amd64-rpm",
+    "linux-amd64-appimage",
+    "linux-arm64-deb",
+    "linux-arm64-rpm",
+    "linux-arm64-appimage",
+    "linux-loongarch64-deb",
+    "linux-mips64el-deb",
+]
+DEFAULT_TARGETS = ",".join(SUPPORTED_TARGETS)
 USER_AGENT = (
     "Mozilla/5.0 (compatible; qq-versions-release-bot/1.0; "
     "+https://github.com/${GITHUB_REPOSITORY:-unknown})"
