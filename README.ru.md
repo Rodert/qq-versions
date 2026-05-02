@@ -1,5 +1,7 @@
 # QQ Versions
 
+**Связанные репозитории**: [QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+
 QQ Versions — это историческое зеркало официальных установщиков QQ. Репозиторий архивирует доступные пакеты для Windows, macOS и Linux в GitHub Releases, чтобы старые версии было проще находить, скачивать и проверять.
 
 **Языки**: [中文](README.md) | [English](README.en.md) | [Français](README.fr.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | Русский | [Español](README.es.md)

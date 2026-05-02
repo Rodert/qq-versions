@@ -1,5 +1,7 @@
 # QQ Versions
 
+**관련 저장소**: [QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+
 QQ Versions는 공식 QQ 설치 파일의 과거 버전 미러입니다. Windows, macOS, Linux용 설치 파일을 GitHub Releases에 정리해 이전 버전을 쉽게 찾고, 다운로드하고, 검증할 수 있게 합니다.
 
 **언어**: [中文](README.md) | [English](README.en.md) | [Français](README.fr.md) | [日本語](README.ja.md) | 한국어 | [Русский](README.ru.md) | [Español](README.es.md)

@@ -1,5 +1,7 @@
 # QQ Versions
 
+**関連リポジトリ**: [QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+
 QQ Versions は、QQ 公式インストーラーの履歴ミラーです。Windows、macOS、Linux 向けのインストーラーを GitHub Releases に整理し、過去バージョンを探しやすく、ダウンロードしやすく、検証しやすくします。
 
 **言語**: [中文](README.md) | [English](README.en.md) | [Français](README.fr.md) | 日本語 | [한국어](README.ko.md) | [Русский](README.ru.md) | [Español](README.es.md)

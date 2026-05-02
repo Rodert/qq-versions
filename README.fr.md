@@ -1,5 +1,7 @@
 # QQ Versions
 
+**Dépôts liés** : [QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+
 QQ Versions est un miroir historique des installateurs officiels de QQ. Il archive les paquets disponibles pour Windows, macOS et Linux dans GitHub Releases afin de faciliter la consultation, le téléchargement et la vérification des anciennes versions.
 
 **Langues** : [中文](README.md) | [English](README.en.md) | Français | [日本語](README.ja.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [Español](README.es.md)

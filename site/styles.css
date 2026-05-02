@@ -59,6 +59,27 @@ main {
   padding: 28px 0 56px;
 }
 
+.repo-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.repo-links a {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid rgba(21, 23, 28, 0.14);
+  border-radius: 8px;
+  color: var(--ink);
+  background: rgba(255, 250, 241, 0.68);
+  font-size: 0.9rem;
+  font-weight: 720;
+  backdrop-filter: blur(12px);
+}
+
 .hero {
   position: relative;
   display: grid;

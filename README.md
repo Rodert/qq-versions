@@ -1,5 +1,7 @@
 # QQ Versions
 
+**相关仓库**：[QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+
 QQ Versions 是一个 QQ 官方安装包历史版本镜像。仓库会把可用的 Windows、macOS、Linux 安装包归档到 GitHub Releases，方便查找、下载和校验不同平台的历史版本。
 
 **语言**：中文 | [English](README.en.md) | [Français](README.fr.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [Русский](README.ru.md) | [Español](README.es.md)
