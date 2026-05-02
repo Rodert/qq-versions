@@ -1,0 +1,52 @@
+name: Sync QQ installer releases
+
+on:
+  schedule:
+    # 02:20 Asia/Shanghai every day.
+    - cron: "20 18 * * *"
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: "Comma-separated package targets"
+        required: false
+        default: "windows-x64"
+      force:
+        description: "Create/upload even if the release tag already exists"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qq-installer-release
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      QQ_RELEASE_TARGETS: ${{ github.event.inputs.targets || 'windows-x64' }}
+      QQ_FORCE_RELEASE: ${{ github.event.inputs.force || 'false' }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve and download QQ installers
+        id: sync
+        run: python3 scripts/sync_qq_release.py --output-dir dist/qq-release
+
+      - name: Create GitHub release
+        if: steps.sync.outputs.should_release == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.sync.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.sync.outputs.title }}
+          RELEASE_BODY: ${{ steps.sync.outputs.body_path }}
+          ASSET_LIST: ${{ steps.sync.outputs.asset_list_path }}
+        run: |
+          mapfile -t assets < "$ASSET_LIST"
+          gh release create "$RELEASE_TAG" "${assets[@]}" --title "$RELEASE_TITLE" --notes-file "$RELEASE_BODY"
