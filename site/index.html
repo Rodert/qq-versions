@@ -3,97 +3,94 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
-    <title>QQ Versions</title>
-    <meta
-      name="description"
-      content="QQ 官方安装包自动镜像，展示 GitHub Releases 中的 Windows、macOS、Linux 安装包。"
-    />
+    <meta name="color-scheme" content="dark" />
+    <title>QQ Versions | 历史安装包下载</title>
+    <meta name="description" content="QQ 官方安装包历史版本镜像，提供 Windows、macOS 和 Linux 下载。" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main>
-      <nav class="repo-links" aria-label="相关仓库">
-        <a href="https://github.com/Rodert/qq-versions">QQ Versions</a>
-        <a href="https://github.com/Rodert/wechat-mac-versions">WeChat macOS Versions</a>
-        <a href="https://github.com/Rodert/wechat-win-versions">WeChat Windows Versions</a>
-      </nav>
+    <main class="container">
+      <header class="terminal-window">
+        <pre class="terminal-mark" aria-hidden="true"> ██████╗  ██████╗
+██╔═══██╗██╔═══██╗
+██║   ██║██║   ██║
+╚██████╔╝╚██████╔╝</pre>
+        <h1>QQ Versions</h1>
+        <p class="subtitle">QQ 全平台历史安装包下载中心</p>
+        <p class="identity-line">
+          <strong>Repository:</strong>
+          <a href="https://github.com/Rodert/qq-versions" target="_blank" rel="noreferrer">Rodert/qq-versions</a>
+          <span aria-hidden="true"> | </span>
+          <a href="https://github.com/Rodert/wechat-mac-versions" target="_blank" rel="noreferrer">WeChat macOS</a>
+          <span aria-hidden="true"> | </span>
+          <a href="https://github.com/Rodert/wechat-win-versions" target="_blank" rel="noreferrer">WeChat Windows</a>
+        </p>
+        <nav class="header-links" aria-label="项目链接">
+          <a href="https://github.com/Rodert/qq-versions" target="_blank" rel="noreferrer">GitHub Repository</a>
+          <a href="https://github.com/Rodert/qq-versions/releases" target="_blank" rel="noreferrer">All Releases</a>
+          <a href="#releases">Browse Packages</a>
+        </nav>
+      </header>
 
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__media" aria-hidden="true">
-          <div class="product-mark">
-            <span>QQ</span>
-          </div>
-          <div class="release-strip release-strip--one"></div>
-          <div class="release-strip release-strip--two"></div>
-          <div class="release-strip release-strip--three"></div>
-        </div>
-
-        <div class="hero__content">
-          <p class="eyebrow">Official installer mirror</p>
-          <h1 id="hero-title">QQ Versions</h1>
-          <p class="hero__lead">
-            自动同步 QQ 官网安装包，按 Release 归档 Windows、macOS、Linux 全平台下载资产。
-          </p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#releases">查看 Releases</a>
-            <a class="button button--ghost" href="https://github.com/Rodert/qq-versions/releases">GitHub 下载</a>
-          </div>
-        </div>
+      <section class="command-bar" aria-label="Release 数据状态">
+        <span class="command-prompt">$</span>
+        <span>curl api.github.com/repos/Rodert/qq-versions/releases</span>
+        <span class="command-caret" aria-hidden="true">&gt;_</span>
       </section>
 
-      <section class="summary" aria-label="同步状态">
-        <div>
-          <span class="summary__value" id="release-count">--</span>
-          <span class="summary__label">Releases</span>
-        </div>
-        <div>
-          <span class="summary__value" id="asset-count">--</span>
-          <span class="summary__label">Assets</span>
-        </div>
-        <div>
-          <span class="summary__value" id="latest-date">--</span>
-          <span class="summary__label">Latest update</span>
-        </div>
+      <section class="stats" aria-label="Release 统计">
+        <div class="stat-card"><span class="stat-label">Total Releases</span><strong class="stat-value" id="release-count">--</strong></div>
+        <div class="stat-card"><span class="stat-label">Latest Version</span><strong class="stat-value" id="latest-version">--</strong></div>
+        <div class="stat-card"><span class="stat-label">Total Packages</span><strong class="stat-value" id="asset-count">--</strong></div>
       </section>
 
-      <section class="toolbar" aria-label="Release 过滤">
+      <section class="release-toolbar" aria-labelledby="releases">
         <div>
-          <p class="eyebrow">Release browser</p>
+          <p class="section-prompt">$ ls ./releases</p>
           <h2 id="releases">下载归档</h2>
         </div>
         <div class="filters" role="group" aria-label="按操作系统筛选">
-          <button class="filter is-active" data-filter="all" type="button">全部</button>
+          <button class="filter is-active" data-filter="all" type="button">All</button>
           <button class="filter" data-filter="windows" type="button">Windows</button>
           <button class="filter" data-filter="macos" type="button">macOS</button>
           <button class="filter" data-filter="linux" type="button">Linux</button>
         </div>
       </section>
 
-      <section class="release-grid" id="release-grid" aria-live="polite">
-        <article class="release-card release-card--loading">
-          <div class="skeleton skeleton--title"></div>
-          <div class="skeleton skeleton--line"></div>
-          <div class="skeleton skeleton--line"></div>
-          <div class="skeleton skeleton--assets"></div>
-        </article>
+      <section class="versions-container" id="release-grid" aria-live="polite">
+        <div class="loading"><span>Loading release data</span><i aria-hidden="true"></i></div>
       </section>
-    </main>
 
+      <footer>
+        <p>&gt; QQ 官方安装包自动同步归档，下载前可获取 <code>SHA256SUMS.txt</code> 校验完整性。</p>
+        <nav class="footer-links" aria-label="相关仓库">
+          <a href="https://github.com/Rodert/wechat-mac-versions" target="_blank" rel="noreferrer">WeChat macOS Versions</a>
+          <a href="https://github.com/Rodert/wechat-win-versions" target="_blank" rel="noreferrer">WeChat Windows Versions</a>
+        </nav>
+      </footer>
+    </main>
     <template id="release-template">
-      <article class="release-card">
-        <div class="release-card__top">
-          <div>
-            <p class="release-card__date"></p>
-            <h3></h3>
+      <article class="version-card">
+        <header class="version-header">
+          <div class="version-title"><span class="version-tag"></span><span class="badge" hidden>Latest</span></div>
+          <time class="version-date"></time>
+        </header>
+        <div class="version-body">
+          <p class="version-info"></p>
+          <div class="packages-section">
+            <p class="packages-title">Available packages</p>
+            <div class="packages-grid"></div>
           </div>
-          <a class="release-card__tag" target="_blank" rel="noreferrer"></a>
         </div>
-        <p class="release-card__body"></p>
-        <div class="asset-list"></div>
       </article>
     </template>
-
+    <template id="asset-template">
+      <a class="package-card" target="_blank" rel="noreferrer">
+        <span class="package-header"><strong class="package-name"></strong><small class="package-size"></small></span>
+        <span class="package-type"></span>
+        <span class="package-download">Download</span>
+      </a>
+    </template>
     <script src="./app.js" type="module"></script>
   </body>
 </html>
