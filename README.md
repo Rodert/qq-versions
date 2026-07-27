@@ -59,3 +59,9 @@ sha256sum -c SHA256SUMS.txt
 - 需要一个更易浏览的 QQ Releases 下载页面。
 
 安装包版权归腾讯所有。本仓库仅做历史版本索引与下载归档。
+
+## 推荐站点
+
+- [Codex 中文网](https://codex-zh.com/)：Codex 中文社区与使用指南。
+- [Codex 在线生图、生视频](https://app.codex-zh.com/)：在线生成图片和视频。
+- [AICoding](https://chongplus.plus/)：AI 编程与开发实践平台。
