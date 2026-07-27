@@ -1,6 +1,7 @@
 const REPOSITORY = "Rodert/qq-versions";
 const RELEASES_API = `https://api.github.com/repos/${REPOSITORY}/releases`;
 const RELEASES_URL = `https://github.com/${REPOSITORY}/releases`;
+const RELEASES_SNAPSHOT = "./releases.json";
 const grid = document.querySelector("#release-grid");
 const releaseTemplate = document.querySelector("#release-template");
 const assetTemplate = document.querySelector("#asset-template");
@@ -9,15 +10,32 @@ let releases = [];
 let activeFilter = "all";
 
 async function loadReleases() {
+  let snapshotError;
+
   try {
-    const response = await fetch(`${RELEASES_API}?per_page=30`, { headers: { Accept: "application/vnd.github+json" } });
-    if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+    const response = await fetch(RELEASES_SNAPSHOT, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Snapshot returned ${response.status}`);
     releases = await response.json();
     renderSummary();
     renderReleases();
   } catch (error) {
-    grid.replaceChildren(errorMessage());
-    console.error(error);
+    snapshotError = error;
+  }
+
+  try {
+    const response = await fetch(`${RELEASES_API}?per_page=30`, {
+      cache: "no-store",
+      headers: { Accept: "application/vnd.github+json" },
+    });
+    if (!response.ok) throw new Error(`GitHub API returned ${response.status}`);
+    releases = await response.json();
+    renderSummary();
+    renderReleases();
+  } catch (apiError) {
+    if (!releases.length) {
+      grid.replaceChildren(errorMessage());
+      console.error(snapshotError || apiError);
+    }
   }
 }
 
