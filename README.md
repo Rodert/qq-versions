@@ -1,6 +1,6 @@
 # QQ Versions
 
-**相关仓库**：[QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions)
+**相关仓库**：[QQ Versions](https://github.com/Rodert/qq-versions) | [WeChat Android Versions](https://github.com/Rodert/wechat-android-versions) | [WeChat Windows Versions](https://github.com/Rodert/wechat-win-versions) | [WeChat macOS Versions](https://github.com/Rodert/wechat-mac-versions) | [WeChat Linux Versions](https://github.com/Rodert/wechat-linux-versions)
 
 QQ Versions 是一个 QQ 官方安装包历史版本镜像。仓库会把可用的 Windows、macOS、Linux 安装包归档到 GitHub Releases，方便查找、下载和校验不同平台的历史版本。
 
